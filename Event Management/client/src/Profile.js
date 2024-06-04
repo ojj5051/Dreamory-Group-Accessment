@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Typography, Box, Grid, Card, CardContent, Container, Avatar, Button, IconButton, OutlinedInput, 
-    InputLabel, InputAdornment, FormControl, Fade, Alert, AlertTitle } from '@mui/material';
+    InputLabel, InputAdornment, FormControl, Fade, Alert, AlertTitle, styled } from '@mui/material';
 import { deepOrange } from '@mui/material/colors';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import TopBar from './TopBar'
@@ -10,6 +10,20 @@ import lightTheme from './themes/lightTheme'
 import axios from "axios";
 
 let data = null
+
+// Only receive int 
+const TextBox = styled(TextField)`
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+`;
 
 function Profile() {
     const [theme, setTheme] = useState(darkTheme)
@@ -100,6 +114,7 @@ function Profile() {
                                         fullWidth
                                         id="name"
                                         type="text"
+                                        label="Name"
                                         name="name"
                                         autoComplete="name"
                                         autoFocus
@@ -114,6 +129,7 @@ function Profile() {
                                         fullWidth
                                         id="email"
                                         type="email"
+                                        label="Email"
                                         name="email"
                                         autoComplete="email"
                                         autoFocus
@@ -122,12 +138,13 @@ function Profile() {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <TextField
+                                    <TextBox
                                         variant="outlined"
                                         required
                                         fullWidth
                                         name="phoneNumber"
-                                        type="text"
+                                        type="number"
+                                        label="Phone Number"
                                         id="phoneNumber"
                                         autoComplete="phoneNumber"
                                         value={phoneNumber}
